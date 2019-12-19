@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="container w-50 register">
+        <h1 class="typo_title">Register</h1>
+        {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.firstname) }}
+            {{ form_row(registrationForm.lastname) }}
+            {{ form_row(registrationForm.level) }}
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.plainPassword) }}
+        <div class="d-flex justify-content-end pr-3">
+            <button class="btn">Register</button>
+        </div>
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

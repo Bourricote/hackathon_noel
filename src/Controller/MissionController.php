@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Mission;
 use App\Entity\User;
 use App\Form\MissionType;
+use App\Form\SearchMissionType;
 use App\Repository\MissionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,14 +19,27 @@ use Symfony\Component\Routing\Annotation\Route;
 class MissionController extends AbstractController
 {
     /**
-     * @Route("/", name="mission_index", methods={"GET"})
+     * @Route("/", name="mission_index", methods={"GET", "POST"})
      * @param MissionRepository $missionRepository
      * @return Response
      */
-    public function index(MissionRepository $missionRepository): Response
+    public function index(MissionRepository $missionRepository, Request $request): Response
     {
+        $form = $this->createForm(
+            SearchMissionType::class
+        );
+
+        $form->handleRequest($request);
+        $missions = $missionRepository->findAll();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $missions = $missionRepository->findBySearch($data->getMissionType(), $data->getLevel(), $data->getTransport());
+        }
+
         return $this->render('mission/index.html.twig', [
-            'missions' => $missionRepository->findAll(),
+            'form' => $form->createView(),
+            'missions' => $missions,
         ]);
     }
 
@@ -76,8 +90,8 @@ class MissionController extends AbstractController
         $users = $mission->getUsers();
         return $this->render('mission/show.html.twig', [
             'mission' => $mission,
-            'planet'  => $planet,
-            'users'   => $users,
+            'planet' => $planet,
+            'users' => $users,
         ]);
     }
 
@@ -106,7 +120,7 @@ class MissionController extends AbstractController
      */
     public function delete(Request $request, Mission $mission): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$mission->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $mission->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($mission);
             $entityManager->flush();
