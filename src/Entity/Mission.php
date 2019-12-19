@@ -81,6 +81,12 @@ class Mission
      */
     private $users;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="missionsCreated")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $creator;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -265,6 +271,18 @@ class Mission
             $this->users->removeElement($user);
             $user->removeMission($this);
         }
+
+        return $this;
+    }
+
+    public function getCreator(): ?User
+    {
+        return $this->creator;
+    }
+
+    public function setCreator(?User $creator): self
+    {
+        $this->creator = $creator;
 
         return $this;
     }

@@ -74,9 +74,15 @@ class User implements UserInterface
      */
     private $missions;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Mission", mappedBy="creator")
+     */
+    private $missionsCreated;
+
     public function __construct()
     {
         $this->missions = new ArrayCollection();
+        $this->missionsCreated = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -268,6 +274,37 @@ class User implements UserInterface
     {
         if ($this->missions->contains($mission)) {
             $this->missions->removeElement($mission);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Mission[]
+     */
+    public function getMissionsCreated(): Collection
+    {
+        return $this->missionsCreated;
+    }
+
+    public function addMissionsCreated(Mission $missionsCreated): self
+    {
+        if (!$this->missionsCreated->contains($missionsCreated)) {
+            $this->missionsCreated[] = $missionsCreated;
+            $missionsCreated->setCreator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMissionsCreated(Mission $missionsCreated): self
+    {
+        if ($this->missionsCreated->contains($missionsCreated)) {
+            $this->missionsCreated->removeElement($missionsCreated);
+            // set the owning side to null (unless already changed)
+            if ($missionsCreated->getCreator() === $this) {
+                $missionsCreated->setCreator(null);
+            }
         }
 
         return $this;
