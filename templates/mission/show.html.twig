@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mission{% endblock %}
+
+{% block body %}
+    <h1>Mission</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mission.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ mission.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ mission.description }}</td>
+            </tr>
+            <tr>
+                <th>Transport</th>
+                <td>{{ mission.transport }}</td>
+            </tr>
+            <tr>
+                <th>DepartureDate</th>
+                <td>{{ mission.departureDate ? mission.departureDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ReturnDate</th>
+                <td>{{ mission.returnDate ? mission.returnDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>NumberPerson</th>
+                <td>{{ mission.numberPerson }}</td>
+            </tr>
+            <tr>
+                <th>MissionType</th>
+                <td>{{ mission.missionType }}</td>
+            </tr>
+            <tr>
+                <th>Level</th>
+                <td>{{ mission.level }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ mission.createdAt ? mission.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ mission.updatedAt ? mission.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('mission_index') }}">back to list</a>
+
+    <a href="{{ path('mission_edit', {'id': mission.id}) }}">edit</a>
+
+    {{ include('mission/_delete_form.html.twig') }}
+{% endblock %}
