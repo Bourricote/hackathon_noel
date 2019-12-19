@@ -3,8 +3,10 @@
 {% block title %}Mission{% endblock %}
 
 {% block body %}
-    <h1 class="mission-details text-center typo_title">Mission Details</h1>
-        <img src="{{asset('build/images/')}}{{ planet.imageArt }}" alt="planet image" class="w-100">
+    <div class="page-header">
+        <h1 class="mission-details text-center typo_title mission-title">Mission Details</h1>
+        <img src="{{ asset('build/images/') }}{{ planet.imageArt }}" alt="planet image" class="w-100">
+    </div>
     <div class="info-planet d-flex flex-row justify-content-around my-3">
         <h3 class="mission-details typo_title my-0">{{ planet.name }}</h3>
         <h6>{{ planet.type }}</h6>
@@ -12,51 +14,51 @@
         <h6>{{ planet.temperature }}</h6>
         <h6>{{ planet.distance }} light year</h6>
     </div>
-<div class="container d-flex flex-row">
-    <div class="left-container d-flex flex-column">
-        <img src="{{asset('build/images/')}}{{ planet.imageTech }}" alt="technical planet image" class="w-100">
+    <div class="container d-flex flex-row">
+        <div class="left-container d-flex flex-column">
+            <img src="{{ asset('build/images/') }}{{ planet.imageTech }}" alt="technical planet image" class="w-100">
+        </div>
+        <div class="right-container w-75 pt-2">
+            <table class="reponsive-table highlight">
+                <tbody>
+                <tr>
+                    <th>Title</th>
+                    <td class="px-3">{{ mission.title }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td class="px-3">{{ mission.description }}</td>
+                </tr>
+                <tr>
+                    <th>Transport</th>
+                    <td class="px-3">{{ mission.transport }}</td>
+                </tr>
+                <tr>
+                    <th>Departure Date</th>
+                    <td class="px-3">{{ mission.departureDate ? mission.departureDate|date('Y-m-d') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Return Date</th>
+                    <td class="px-3">{{ mission.returnDate ? mission.returnDate|date('Y-m-d') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Number of Persons</th>
+                    <td class="px-3">{{ mission.numberPerson }}</td>
+                </tr>
+                <tr>
+                    <th>Mission Type</th>
+                    <td class="px-3">{{ mission.missionType }}</td>
+                </tr>
+                <tr>
+                    <th>Level</th>
+                    <td class="px-3">{{ mission.level }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="right-container w-75 pt-2">
-        <table class="reponsive-table highlight">
-            <tbody>
-            <tr>
-                <th>Title</th>
-                <td class="px-3">{{ mission.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td class="px-3">{{ mission.description }}</td>
-            </tr>
-            <tr>
-                <th>Transport</th>
-                <td class="px-3">{{ mission.transport }}</td>
-            </tr>
-            <tr>
-                <th>Departure Date</th>
-                <td class="px-3">{{ mission.departureDate ? mission.departureDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Return Date</th>
-                <td class="px-3">{{ mission.returnDate ? mission.returnDate|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Number of Persons</th>
-                <td class="px-3">{{ mission.numberPerson }}</td>
-            </tr>
-            <tr>
-                <th>Mission Type</th>
-                <td class="px-3">{{ mission.missionType }}</td>
-            </tr>
-            <tr>
-                <th>Level</th>
-                <td class="px-3">{{ mission.level }}</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
     <div class="d-flex justify-content-center my-5">
-    <a href="{{ path('mission_index') }}" class="btn mr-5" id=btn_custom>Missions list</a>
-    <a href="{{ path('mission_index') }}" class="btn" id=btn_custom>Enroll to a mission</a>
+        <a href="{{ path('mission_index') }}" class="btn mr-5" id=btn_custom>Missions list</a>
+        <a href="{{ path('mission_enroll', {'mission': mission.id, 'user': app.user.id }) }}" class="btn" id=btn_custom>Enroll for this mission</a>
     </div>
 {% endblock %}
