@@ -9,10 +9,10 @@
     </div>
     <div class="info-planet d-flex flex-row justify-content-around my-3">
         <h3 class="mission-details typo_title my-0">{{ planet.name }}</h3>
-        <h6>{{ planet.type }}</h6>
-        <h6>{{ planet.population }}</h6>
-        <h6>{{ planet.temperature }}</h6>
-        <h6>{{ planet.distance }} light year</h6>
+        <h6>Type: <b>{{ planet.type }}</b></h6>
+        <h6>People: <b>{{ planet.population }}</b></h6>
+        <h6>Temperature: <b>{{ planet.temperature }}</b></h6>
+        <h6>Distance: <b>{{ planet.distance }} light year</b></h6>
     </div>
     <div class="container d-flex flex-row">
         <div class="left-container d-flex flex-column">
@@ -57,8 +57,15 @@
             </table>
         </div>
     </div>
-    <div class="d-flex justify-content-center my-5">
-        <a href="{{ path('mission_index') }}" class="btn mr-5" id=btn_custom>Missions list</a>
-        <a href="{{ path('mission_enroll', {'mission': mission.id, 'user': app.user.id }) }}" class="btn" id=btn_custom>Enroll for this mission</a>
-    </div>
+    {% if app.user %}
+        <div class="d-flex justify-content-center my-5">
+            <a href="{{ path('mission_index') }}" class="btn mr-5" id=btn_custom>Missions list</a>
+            <a href="{{ path('mission_enroll', {'mission': mission.id, 'user': app.user.id }) }}" class="btn"
+               id=btn_custom>Enroll for this mission</a>
+        </div>
+    {% else %}
+        <div class="d-flex justify-content-center my-5">
+            <a href="{{ path('app_login') }}" class="btn mr-5" id=btn_custom>Sign in to enroll for this mission</a>
+        </div>
+    {% endif %}
 {% endblock %}
