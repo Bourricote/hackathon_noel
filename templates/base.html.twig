@@ -11,8 +11,10 @@
 </head>
 <body>
 {% include '_navbar.html.twig' %}
+
 {% block body %}
 {% endblock %}
+
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
