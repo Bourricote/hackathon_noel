@@ -4,29 +4,36 @@
 
 {% block body %}
 
-<div class="container-fluid">
-<h1 class="typo_title text-center text-white"> Search for your next mission !</h1>
-    <div class="block-search d-flex justify-content-center align-items-center mt-5">
-        {{ form_start(form) }}
-        <div class="d-flex search_mission">
-            <div>
-                {{ form_row(form.missionType,  { 'label': 'Type' }) }}
+    <div class="container-fluid">
+        {% if is_granted('ROLE_ADMIN') %}
+        <div class=" text-center">
+            <a class="create_new_mission typo_title " href="{{ path('mission_new') }}">
+                Create a new mission
+            </a>
+        </div>
+        {% endif %}
+        <h1 class="typo_title text-center text-white"> Search for your next mission !</h1>
+        <div class="block-search d-flex justify-content-center align-items-center mt-5">
+            {{ form_start(form) }}
+            <div class="d-flex search_mission">
+                <div>
+                    {{ form_row(form.missionType,  { 'label': 'Type' }) }}
+                </div>
+                <div>
+                    {{ form_row(form.level) }}
+                </div>
+                <div>
+                    {{ form_row(form.transport) }}
+                </div>
+                <div>
+                    <button class="btn" id="btn_custom">
+                        {{ button_label|default('Search') }}
+                    </button>
+                </div>
+                {{ form_end(form) }}
             </div>
-            <div>
-                {{ form_row(form.level) }}
-            </div>
-            <div>
-                {{ form_row(form.transport) }}
-            </div>
-            <div>
-                <button class="btn" id="btn_custom">
-                    {{ button_label|default('Search') }}
-                </button>
-            </div>
-            {{ form_end(form) }}
         </div>
     </div>
-</div>
     <div class="container-fluid">
 
         <h1 class="typo_title text-center text-white">Available missions</h1>
