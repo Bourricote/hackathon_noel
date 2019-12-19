@@ -15,5 +15,6 @@ require('bootstrap');
 /*require('@fortawesome/fontawesome-free/scss/all.min.scss');*/
 require('@fortawesome/fontawesome-free/js/all.js');
 
-
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+
+require('./form_new_mission.js');

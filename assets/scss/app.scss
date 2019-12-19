@@ -3,15 +3,8 @@
 @import "vars";
 @import "nav";
 @import "home";
+@import "form_new_mission";
 
 body {
     background-color: $black;
-    h1{
-        color:white;
-        font-family: earthorbiter;
-    }
-    h2{
-        color: white;
-        font-family: nasalization;
-    }
 }

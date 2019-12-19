@@ -6,6 +6,8 @@ use App\Entity\Mission;
 use App\Entity\Planet;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,20 +17,24 @@ class MissionType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('description')
+            ->add('description', TextareaType::class, [
+                'attr' => [
+                    'rows' => '6'
+                ]
+            ])
             ->add('transport')
-            ->add('departureDate')
-            ->add('returnDate')
-            ->add('numberPerson')
+            ->add('departureDate', null, ['attr'=>[
+                'class' => 'datepicker'
+    ]])
+            ->add('returnDate', null, ['attr'=>[
+                'class' => 'datepicker'
+            ]])
+            ->add('numberPerson', null, ['label' => 'How many ?'])
             ->add('missionType')
             ->add('level')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('planet', null,[
+            ->add('planet', null, [
                 'choice_label' => 'name'
-            ])
-            ->add('users')
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
