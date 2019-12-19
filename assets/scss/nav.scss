@@ -1,7 +1,14 @@
 #nav-bar {
   background-color: $black;
+  .tabs {
+    .tab {
+      a {
+        font-size: 1.8rem;
+      }
+    }
+  }
   .resize {
-    width: 100px;
+    width: 80px;
     color: white;
   }
 }

@@ -1,26 +1,26 @@
 <nav id="nav-bar" class="nav-extended">
-    <div class="nav-wrapper">
-        <a href="#" class="brand-logo">Logo</a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#">Sass</a></li>
-            <li><a href="#">Components</a></li>
-            <li><a href="#">JavaScript</a></li>
-        </ul>
-    </div>
-    <div class="container justify-content-center nav-content">
+    <div class="container justify-content-center nav-content py-3">
         <ul class="tabs d-flex justify-content-center tabs-transparent">
-            <li class="tab"><a href="#test1">Test 1</a></li>
-            <li class="tab"><a class="active" href="#test2">Test 2</a></li>
-            <li class="tab disabled"><a href="#test3">Disabled Tab</a></li>
-            <li class="tab"><a href="#test4">Test 4</a></li>
+            <li class="tab typo_title"><a href="#home">Home</a></li>
+            <li class="tab typo_title"><a class="active" href="{{ path('') }}">Missions</a></li>
+            <li class="tab typo_title"><a class="active" href="#missions"><img class="resize" src="{{asset('build/images/logo.png')}}" alt=""></a></li>
+            <li class="tab disabled typo_title"><a href="#sign-in">Sign up</a></li>
+            <li class="tab typo_title"><a href="#login">Login</a></li>
         </ul>
     </div>
+    <div class="nav-wrapper">
+        <a href="{{ path('default') }}" class="brand-logo"></a>
+       {# <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>#}
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        </ul>
+    </div>
+
 </nav>
 
 <ul class="sidenav" id="mobile-demo">
-    <li><a href="#">Sass</a></li>
+    <li><a href="#">home</a></li>
     <li><a href="#">Components</a></li>
     <li><a href="#">JavaScript</a></li>
 </ul>
+
 

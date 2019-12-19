@@ -5,13 +5,13 @@
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     {% endblock %}
 </head>
 <body>
 {% include '_navbar.html.twig' %}
 {% block body %}
-<h1>COUCOU</h1>
 {% endblock %}
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
