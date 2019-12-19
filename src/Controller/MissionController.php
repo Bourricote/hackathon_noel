@@ -59,6 +59,21 @@ class MissionController extends AbstractController
     }
 
     /**
+     * @Route("/admin/{user}", name="mission_admin", methods={"GET"})
+     * @param MissionRepository $missionRepository
+     * @param User $user
+     * @return Response
+     */
+
+    public function adminMissions(MissionRepository $missionRepository, User $user): Response
+    {
+        $missions = $missionRepository->findBy(['creator' => $user->getId()]);
+        return $this->render('mission/admin_index.html.twig', [
+            'missions' => $missions,
+        ]);
+    }
+
+    /**
      * @Route("/new", name="mission_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
@@ -83,20 +98,25 @@ class MissionController extends AbstractController
 
     /**
      * @Route("/{id}", name="mission_show", methods={"GET"})
+     * @param Mission $mission
+     * @return Response
      */
     public function show(Mission $mission): Response
     {
         $planet = $mission->getPlanet();
-        $users = $mission->getUsers();
+
         return $this->render('mission/show.html.twig', [
             'mission' => $mission,
             'planet' => $planet,
-            'users' => $users,
+
         ]);
     }
 
     /**
      * @Route("/{id}/edit", name="mission_edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Mission $mission
+     * @return Response
      */
     public function edit(Request $request, Mission $mission): Response
     {
