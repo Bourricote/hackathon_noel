@@ -53,8 +53,12 @@ class MissionController extends AbstractController
      */
     public function show(Mission $mission): Response
     {
+        $planet = $mission->getPlanet();
+        $users = $mission->getUsers();
         return $this->render('mission/show.html.twig', [
             'mission' => $mission,
+            'planet'  => $planet,
+            'users'   => $users,
         ]);
     }
 
