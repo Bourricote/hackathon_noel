@@ -21,6 +21,7 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
             'number_person' => 12,
             'mission_type' => 'rescue',
             'level' => 'beginner',
+            'planet' => 'planet_0',
         ],
         [
             'title' => 'Fight a revolution',
@@ -31,6 +32,7 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
             'number_person' => 80,
             'mission_type' => 'fight',
             'level' => 'advanced',
+            'planet' => 'planet_1',
         ],
         [
             'title' => 'Infiltrate an anarchist group',
@@ -41,6 +43,18 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
             'number_person' => 10,
             'mission_type' => 'fight',
             'level' => 'expert',
+            'planet' => 'planet_2',
+        ],
+        [
+            'title' => 'Repopulate the planet',
+            'description' => 'After an epidemic, this planet needs help to repopulate, any kind of genes accepted',
+            'transport' => 'magic bus',
+            'departure_date' => '2240-01-05',
+            'return_date' => '2245-09-15',
+            'number_person' => 100,
+            'mission_type' => 'rescue',
+            'level' => 'beginner',
+            'planet' => 'planet_3',
         ],
 
     ];
@@ -50,7 +64,7 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
         $i = 0;
         foreach (self::MISSIONS as $data) {
             $mission = new Mission();
-            $mission->setPlanet($this->getReference('planet_' . rand(0, 3)));
+            $mission->setPlanet($this->getReference($data['planet']));
             $mission->setTitle($data['title']);
             $mission->setDescription($data['description']);
             $mission->setTransport($data['transport']);
