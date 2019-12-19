@@ -8,9 +8,9 @@
 <h1 class="typo_title text-center text-white"> Search for your next mission !</h1>
     <div class="block-search d-flex justify-content-center align-items-center mt-5">
         {{ form_start(form) }}
-        <div class="d-flex">
+        <div class="d-flex search_mission">
             <div>
-                {{ form_row(form.missionType) }}
+                {{ form_row(form.missionType,  { 'label': 'Type' }) }}
             </div>
             <div>
                 {{ form_row(form.level) }}
