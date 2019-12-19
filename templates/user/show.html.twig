@@ -3,56 +3,48 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>Firstname</th>
-                <td>{{ user.firstname }}</td>
-            </tr>
-            <tr>
-                <th>Lastname</th>
-                <td>{{ user.lastname }}</td>
-            </tr>
-            <tr>
-                <th>Level</th>
-                <td>{{ user.level }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ user.image }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('user_index') }}">back to list</a>
-
-    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
-
-    {{ include('user/_delete_form.html.twig') }}
+    <h1 class="text-center profile typo_title">Profile</h1>
+    <div class="container d-flex flex-row my-5">
+        <div class="left-container d-flex justify-content-around w-75">
+            <img src="{{ user.image }}" alt="profile picture"class="w-75">
+        </div>
+        <div class="right-container pt-2">
+            <table class="reponsive-table highlight">
+                <tbody>
+                <tr>
+                    <th>Email</th>
+                    <td class="px-3">{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <th>Firstname</th>
+                    <td class="px-3">{{ user.firstname }}</td>
+                </tr>
+                <tr>
+                    <th>Lastname</th>
+                    <td class="px-3">{{ user.lastname }}</td>
+                </tr>
+                <tr>
+                    <th>Level</th>
+                    <td class="px-3">{{ user.level }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <h1 class="text-center profile typo_title">Missions History</h1>
+    <div class="container">
+    {% for mission in user.missions %}
+        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{{ asset('build/images/' ~ mission.planet.imageArt) }}" alt="planet picture">
+                    <span class="card-title card-mission-profile py-2">{{ mission.title }}</span>
+                </div>
+                <div class="card-content">
+                    <p>{{ mission.description }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
 {% endblock %}
