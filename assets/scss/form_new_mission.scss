@@ -1,5 +1,16 @@
-.typo_title{
-  font-family: earthorbiter;
-  color: black;
+.form-control {
+  color: white;
 }
 
+#btn_custom {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 3px;
+  font-size: 1rem;
+
+  &:hover {
+    background: linear-gradient(to top, #229ed0 0%, #330867 100%);
+    border: none;
+  }
+}

@@ -1,4 +1,5 @@
 {{ form_start(form) }}
+
 {{ form_row(form.title) }}
 {{ form_row(form.description) }}
 {{ form_row(form.missionType) }}
@@ -8,5 +9,6 @@
 {{ form_row(form.transport) }}
 {{ form_row(form.numberPerson) }}
 {{ form_row(form.planet) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<button class="btn btn_custom float-right mr-3 mt-3 mb-5 " id="btn_custom">{{ button_label|default('Save') }}</button>
+
 {{ form_end(form) }}

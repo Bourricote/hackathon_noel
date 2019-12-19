@@ -3,11 +3,11 @@
 {% block title %}New Mission{% endblock %}
 
 {% block body %}
-    <div class="container">
-    <h1 class="typo_title">Create new Mission</h1>
+    <div class="container mt-5 mb-5">
+
+        <h1 class="typo_title text-white">Create new Mission</h1>
 
     {{ include('mission/_form.html.twig') }}
 
-    <a href="{{ path('mission_index') }}">back to list</a>
     </div>
 {% endblock %}
