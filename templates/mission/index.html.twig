@@ -6,7 +6,7 @@
 
     <div class="container-fluid">
         {% if is_granted('ROLE_ADMIN') %}
-            <div class="d-flex">
+            <div class="d-flex justify-content-around">
                 <div class=" text-center">
                     <a class="create_new_mission typo_title " href="{{ path('mission_new') }}">
                         Create a new mission
@@ -16,7 +16,7 @@
                 <div class=" text-center">
                     <a class="create_new_mission typo_title "
                        href="{{ path('mission_admin', {'user' : app.user.id}) }}">
-                        My missions
+                        Missions I created
                     </a>
                 </div>
             </div>
