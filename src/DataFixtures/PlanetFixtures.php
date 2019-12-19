@@ -47,6 +47,7 @@ class PlanetFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+        $i = 0;
         foreach (self::PLANETS as $data) {
             $planet = new Planet();
             $planet->setName($data['name']);
@@ -56,6 +57,8 @@ class PlanetFixtures extends Fixture
             $planet->setTemperature(($data['temperature']));
             $planet->setPopulation($data['population']);
             $manager->persist($planet);
+            $this->addReference('planet_' . $i, $planet);
+            $i++;
         }
         $manager->flush();
     }
