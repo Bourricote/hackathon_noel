@@ -54,8 +54,8 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
             $mission->setTitle($data['title']);
             $mission->setDescription($data['description']);
             $mission->setTransport($data['transport']);
-            $mission->setDepartureDate(new DateTime($data['departure_date']));
-            $mission->setReturnDate(new DateTime($data['return_date']));
+            $mission->setDepartureDate($data['departure_date']);
+            $mission->setReturnDate($data['return_date']);
             $mission->setNumberPerson(($data['number_person']));
             $mission->setMissionType($data['mission_type']);
             $mission->setLevel($data['level']);

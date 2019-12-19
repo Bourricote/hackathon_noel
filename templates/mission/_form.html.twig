@@ -1,4 +1,12 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+{{ form_row(form.title) }}
+{{ form_row(form.description) }}
+{{ form_row(form.missionType) }}
+{{ form_row(form.level) }}
+{{ form_row(form.departureDate) }}
+{{ form_row(form.returnDate) }}
+{{ form_row(form.transport) }}
+{{ form_row(form.numberPerson) }}
+{{ form_row(form.planet) }}
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

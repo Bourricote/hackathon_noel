@@ -36,12 +36,12 @@ class Mission
     private $transport;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="text")
      */
     private $departureDate;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="text")
      */
     private $returnDate;
 
@@ -127,24 +127,24 @@ class Mission
         return $this;
     }
 
-    public function getDepartureDate(): ?\DateTimeInterface
+    public function getDepartureDate()
     {
         return $this->departureDate;
     }
 
-    public function setDepartureDate(\DateTimeInterface $departureDate): self
+    public function setDepartureDate($departureDate): self
     {
         $this->departureDate = $departureDate;
 
         return $this;
     }
 
-    public function getReturnDate(): ?\DateTimeInterface
+    public function getReturnDate()
     {
         return $this->returnDate;
     }
 
-    public function setReturnDate(\DateTimeInterface $returnDate): self
+    public function setReturnDate($returnDate): self
     {
         $this->returnDate = $returnDate;
 
