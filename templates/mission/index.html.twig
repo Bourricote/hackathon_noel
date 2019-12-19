@@ -6,11 +6,20 @@
 
     <div class="container-fluid">
         {% if is_granted('ROLE_ADMIN') %}
-        <div class=" text-center">
-            <a class="create_new_mission typo_title " href="{{ path('mission_new') }}">
-                Create a new mission
-            </a>
-        </div>
+            <div class="d-flex">
+                <div class=" text-center">
+                    <a class="create_new_mission typo_title " href="{{ path('mission_new') }}">
+                        Create a new mission
+                    </a>
+
+                </div>
+                <div class=" text-center">
+                    <a class="create_new_mission typo_title "
+                       href="{{ path('mission_admin', {'user' : app.user.id}) }}">
+                        My missions
+                    </a>
+                </div>
+            </div>
         {% endif %}
 
         <h1 class="typo_title text-center text-white"> Search for your next mission !</h1>
@@ -54,7 +63,7 @@
                         <div class="card-content">
                             <p>{{ mission.description }}</p>
                             <p>Level required: <b>{{ mission.level }}</b></p>
-                            <p>Mission type: <b>{{ mission.missionType }}</b> </p>
+                            <p>Mission type: <b>{{ mission.missionType }}</b></p>
                         </div>
                     </div>
                 </div>
