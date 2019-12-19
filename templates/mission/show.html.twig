@@ -3,14 +3,30 @@
 {% block title %}Mission{% endblock %}
 
 {% block body %}
-    <h1>Mission</h1>
-
-    <table class="table">
-        <tbody>
+    <h1 class="mission-details text-center typo_title">Mission Details</h1>
+        <img src="{{asset('build/images/')}}{{ planet.imageArt }}" alt="planet image">
+<div class="container d-flex flex-row">
+    <div class="left-container d-flex flex-column">
+        <h3 class="mission-details typo_title">{{ planet.name }}</h3>
+        <img src="{{asset('build/images/')}}{{ planet.imageTech }}" alt="technical planet image" class="w-100">
+        <table>
+            <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ mission.id }}</td>
+                <th>Type</th>
+                <th>Population</th>
+                <th>Temperature</th>
             </tr>
+            <tr>
+                <td class="td-planet p-1">{{ planet.type }}</td>
+                <td class="td-planet p-1">{{ planet.population }}</td>
+                <td class="td-planet p-1">{{ planet.temperature }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="right-container w-75">
+        <table class="reponsive-table highlight">
+            <tbody>
             <tr>
                 <th>Title</th>
                 <td>{{ mission.title }}</td>
@@ -24,39 +40,31 @@
                 <td>{{ mission.transport }}</td>
             </tr>
             <tr>
-                <th>DepartureDate</th>
+                <th>Departure Date</th>
                 <td>{{ mission.departureDate ? mission.departureDate|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>ReturnDate</th>
+                <th>Return Date</th>
                 <td>{{ mission.returnDate ? mission.returnDate|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>NumberPerson</th>
+                <th>Number of Persons</th>
                 <td>{{ mission.numberPerson }}</td>
             </tr>
             <tr>
-                <th>MissionType</th>
+                <th>Mission Type</th>
                 <td>{{ mission.missionType }}</td>
             </tr>
             <tr>
                 <th>Level</th>
                 <td>{{ mission.level }}</td>
             </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ mission.createdAt ? mission.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ mission.updatedAt ? mission.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('mission_index') }}">back to list</a>
-
-    <a href="{{ path('mission_edit', {'id': mission.id}) }}">edit</a>
-
-    {{ include('mission/_delete_form.html.twig') }}
+            </tbody>
+        </table>
+    </div>
+</div>
+    <div class="d-flex justify-content-center mt-5">
+    <a href="{{ path('mission_index') }}" class="mr-5" id=btn_custom>Missions list</a>
+    <a href="{{ path('mission_index') }}" id=btn_custom>Enroll to a mission</a>
+    </div>
 {% endblock %}
