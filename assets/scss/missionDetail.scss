@@ -9,3 +9,16 @@ table {
   color: white;
   font-family: 'nasalization', sans-serif;
 }
+
+.page-header {
+  position: relative;
+  .mission-title {
+    position: absolute;
+    top: 60%;
+    font-size: 4rem;
+    line-height: 5rem;
+    width: 100%;
+    background-color: rgba(0,0,0,0.6);
+  }
+}
+

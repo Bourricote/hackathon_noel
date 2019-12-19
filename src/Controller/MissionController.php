@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Mission;
+use App\Entity\User;
 use App\Form\MissionType;
 use App\Form\SearchMissionType;
 use App\Repository\MissionRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,6 +41,21 @@ class MissionController extends AbstractController
             'form' => $form->createView(),
             'missions' => $missions,
         ]);
+    }
+
+    /**
+     * @Route("/enroll/{mission}/{user}", name="mission_enroll", methods={"GET"})
+     * @param Mission $mission
+     * @param User $user
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+    public function enroll(Mission $mission, User $user, EntityManagerInterface $entityManager) : Response
+    {
+        $user->addMission($mission);
+        $entityManager->persist($user);
+        $entityManager->flush();
+        return $this->redirectToRoute('mission_index');
     }
 
     /**
