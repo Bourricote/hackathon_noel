@@ -1,10 +1,15 @@
 @import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 @import "vars";
 @import "nav";
+@import "home";
 @import "form_new_mission";
 @import "mission_index";
 @import "missionDetail";
 
 body {
-    background-color: $darkBlue;
+    background-color: $black;
+    p {
+        font-family: 'Josefin Sans', sans-serif;
+    }
 }

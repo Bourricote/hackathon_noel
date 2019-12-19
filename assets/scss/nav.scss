@@ -1,3 +1,17 @@
 #nav-bar {
-  background-color: $darkBlue !important;
+  background-color: $black;
+  ul {
+    height: auto;
+  }
+  .tabs {
+    .tab {
+      a {
+        font-size: 1.8rem;
+      }
+    }
+  }
+  .resize {
+    width: 80px;
+    color: white;
+  }
 }
