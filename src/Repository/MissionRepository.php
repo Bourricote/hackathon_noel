@@ -19,6 +19,24 @@ class MissionRepository extends ServiceEntityRepository
         parent::__construct($registry, Mission::class);
     }
 
+
+    public function findBySearch($missionType, $level, $transport)
+    {
+        $qb = $this->createQueryBuilder('m')
+            ->where('m.missionType LIKE :missionType')
+            ->andWhere('m.level LIKE :level')
+            ->andWhere('m.transport LIKE :transport')
+            ->setParameters([
+                'missionType' => $missionType,
+                'level'       => $level,
+                'transport'   => $transport
+            ])
+            ->addSelect('m')
+            ->getQuery();
+
+        return $qb->getResult();
+    }
+
     // /**
     //  * @return Mission[] Returns an array of Mission objects
     //  */

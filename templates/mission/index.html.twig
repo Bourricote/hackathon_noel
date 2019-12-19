@@ -4,8 +4,31 @@
 
 {% block body %}
 
+<div class="container-fluid">
+<h1 class="typo_title text-center text-white"> Search for your next mission !</h1>
+    <div class="block-search d-flex justify-content-center align-items-center mt-5">
+        {{ form_start(form) }}
+        <div class="d-flex">
+            <div>
+                {{ form_row(form.missionType) }}
+            </div>
+            <div>
+                {{ form_row(form.level) }}
+            </div>
+            <div>
+                {{ form_row(form.transport) }}
+            </div>
+            <div>
+                <button class="btn" id="btn_custom">
+                    {{ button_label|default('Search') }}
+                </button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
     <div class="container-fluid">
-        <h1 class="typo_title">All the registered missions</h1>
+        <h1 class="typo_title text-center text-white">Available missions</h1>
         <div class="row">
             {% for mission in missions %}
                 <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
