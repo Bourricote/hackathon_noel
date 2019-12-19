@@ -17,6 +17,8 @@ class MissionController extends AbstractController
 {
     /**
      * @Route("/", name="mission_index", methods={"GET"})
+     * @param MissionRepository $missionRepository
+     * @return Response
      */
     public function index(MissionRepository $missionRepository): Response
     {
