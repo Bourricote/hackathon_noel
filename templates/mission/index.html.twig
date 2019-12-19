@@ -3,51 +3,25 @@
 {% block title %}Mission index{% endblock %}
 
 {% block body %}
-    <h1>Mission index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Transport</th>
-                <th>DepartureDate</th>
-                <th>ReturnDate</th>
-                <th>NumberPerson</th>
-                <th>MissionType</th>
-                <th>Level</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <h1>All the registered missions</h1>
+    <div class="row">
         {% for mission in missions %}
-            <tr>
-                <td>{{ mission.id }}</td>
-                <td>{{ mission.title }}</td>
-                <td>{{ mission.description }}</td>
-                <td>{{ mission.transport }}</td>
-                <td>{{ mission.departureDate ? mission.departureDate|date('Y-m-d') : '' }}</td>
-                <td>{{ mission.returnDate ? mission.returnDate|date('Y-m-d') : '' }}</td>
-                <td>{{ mission.numberPerson }}</td>
-                <td>{{ mission.missionType }}</td>
-                <td>{{ mission.level }}</td>
-                <td>{{ mission.createdAt ? mission.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ mission.updatedAt ? mission.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('mission_show', {'id': mission.id}) }}">show</a>
-                    <a href="{{ path('mission_edit', {'id': mission.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="12">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('mission_new') }}">Create new</a>
+            <div class="col s12 m6 lg3">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{ asset('build/images/Gliese_imageArt2.jpg') }}" alt="planet picture">
+                        <span class="card-title">{{ mission.title }}</span>
+                        <a href="{{ path('mission_show', {'id': mission.id }) }}" class="btn-floating halfway-fab waves-effect waves-light red"><i
+                                    class="material-icons">Go</i></a>
+                    </div>
+                    <div class="card-content">
+                        <p>{{ mission.description }}</p>
+                        <p>Level required : {{ mission.level }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
 {% endblock %}
