@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Mission;
+use App\Entity\Planet;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,7 +24,9 @@ class MissionType extends AbstractType
             ->add('level')
             ->add('createdAt')
             ->add('updatedAt')
-            ->add('planet')
+            ->add('planet', null,[
+                'choice_label' => 'name'
+            ])
             ->add('users')
         ;
     }

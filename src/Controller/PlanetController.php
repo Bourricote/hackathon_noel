@@ -17,6 +17,8 @@ class PlanetController extends AbstractController
 {
     /**
      * @Route("/", name="planet_index", methods={"GET"})
+     * @param PlanetRepository $planetRepository
+     * @return Response
      */
     public function index(PlanetRepository $planetRepository): Response
     {
