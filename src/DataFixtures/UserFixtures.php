@@ -6,10 +6,11 @@ namespace App\DataFixtures;
 
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class UserFixtures extends Fixture
+class UserFixtures extends Fixture implements DependentFixtureInterface
 {
     private $passwordEncoder;
 
@@ -39,7 +40,7 @@ class UserFixtures extends Fixture
         ));
         $subscriber->addMission($this->getReference('mission_' . rand(0,2)));
         $manager->persist($subscriber);
-        $this->addReference('user_0');
+        $this->addReference('user_0', $subscriber);
 
         $admin = new User();
         $admin->setEmail('anne.quiedeville@orange.fr');
@@ -55,5 +56,10 @@ class UserFixtures extends Fixture
 
         $manager->persist($admin);
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [MissionFixtures::class];
     }
 }
