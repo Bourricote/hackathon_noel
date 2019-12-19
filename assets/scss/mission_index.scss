@@ -1,5 +1,23 @@
+.create_new_mission{
+  color : $turquoise;
+  font-size : 3rem;
+  border: 1px dashed $turquoise;
+  border-radius: 5px;
+  padding : 1rem;
+  &:hover{
+    text-decoration: none;
+    color : lighten($turquoise, 20%);
+  }
+}
+
 #search_mission_transport{
-  margin-left :1rem;
+  margin-left : 1.3rem;
+}
+
+.block-search{
+  label{
+    font-size: 1.2rem;
+  }
 }
 .card {
   margin: 1rem;
@@ -7,6 +25,11 @@
   font-size: 1.3rem;
   img {
     height: 200px;
+  }
+  .card-image{
+    i{
+      background-color: $turquoise;
+    }
   }
   .material-icons {
     font-size: 1.5rem;
