@@ -15,6 +15,7 @@ class PlanetFixtures extends Fixture
             'type' => 'mesoplanet',
             'distance' => 39.5,
             'image_tech' => 'Gliese180b_imageTech.svg',
+            'image_art'=> 'Gliese_imageArt2.jpg',
             'temperature' => '0 to 50°C',
             'population' => 'Gliesians',
         ],
@@ -23,6 +24,7 @@ class PlanetFixtures extends Fixture
             'type' => 'psychroplanet',
             'distance' => 1199.7,
             'image_tech' => 'Kepler62f_imageTech.svg',
+            'image_art'=> 'Kepler_imageArt.jpg',
             'temperature' => '-50 to 0°C',
             'population' => 'Keplians',
         ],
@@ -31,6 +33,7 @@ class PlanetFixtures extends Fixture
             'type' => 'psychroplanet',
             'distance' => 12.7,
             'image_tech' => 'Kapteyn b_imageTech.svg',
+            'image_art'=> 'Kapteyn_imageArt.jpg',
             'temperature' => '-50 to 0°C',
             'population' => 'Zarglians',
         ],
@@ -39,6 +42,7 @@ class PlanetFixtures extends Fixture
             'type' => 'mesoplanet',
             'distance' => 1213.4,
             'image_tech' => 'KOI-3010.01_imageTech.svg',
+            'image_art'=> 'KOI-3010.01_imageArt.jpg',
             'temperature' => '0 to 50°C',
             'population' => 'Zarglians',
         ],
@@ -54,6 +58,7 @@ class PlanetFixtures extends Fixture
             $planet->setType($data['type']);
             $planet->setDistance($data['distance']);
             $planet->setImageTech($data['image_tech']);
+            $planet->setImageArt($data['image_art']);
             $planet->setTemperature(($data['temperature']));
             $planet->setPopulation($data['population']);
             $manager->persist($planet);
