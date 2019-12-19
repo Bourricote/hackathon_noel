@@ -1,5 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
+@import "vars";
+@import "nav";
 
 body {
-    background-color: lightgray;
+    background-color: $darkBlue;
 }
