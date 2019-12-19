@@ -1,9 +1,11 @@
 @import "~bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
 @import "vars";
 @import "nav";
+@import "home";
 
 body {
-    background-color: $darkBlue;
+    background-color: $black;
     h1{
         color:white;
         font-family: earthorbiter;

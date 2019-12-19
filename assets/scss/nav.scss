@@ -1,3 +1,7 @@
 #nav-bar {
-  background-color: $darkBlue !important;
+  background-color: $black;
+  .resize {
+    width: 100px;
+    color: white;
+  }
 }
