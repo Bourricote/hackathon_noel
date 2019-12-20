@@ -60,10 +60,13 @@ class MissionController extends AbstractController
         $from = $this->getParameter('mailer_from');
         $to = $user->getEmail();
         $subject = $this->getParameter('mailer_subject');
-        $mailer->sendMissionEnrollment($from, $from, $user, $subject, $mission);
+        $mailer->sendMissionEnrollment($from, $to, $user, $subject, $mission);
 
-        return $this->redirectToRoute('mission_index');
+        return $this->render('/mission/stars_video.html.twig');
+
     }
+
+
 
     /**
      * @Route("/admin/{user}", name="mission_admin", methods={"GET"})
@@ -88,9 +91,10 @@ class MissionController extends AbstractController
         $mission = new Mission();
         $form = $this->createForm(MissionType::class, $mission);
         $form->handleRequest($request);
-
+        $user = $this->getUser();
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $mission->setCreator($user);
             $entityManager->persist($mission);
             $entityManager->flush();
 
@@ -111,10 +115,12 @@ class MissionController extends AbstractController
     public function show(Mission $mission): Response
     {
         $planet = $mission->getPlanet();
+        $participants = $mission->getUsers();
 
         return $this->render('mission/show.html.twig', [
             'mission' => $mission,
             'planet' => $planet,
+            'participants' => $participants,
 
         ]);
     }

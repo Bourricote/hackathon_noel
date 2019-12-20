@@ -5,8 +5,8 @@
 {% block body %}
     <h1 class="text-center profile typo_title">Profile</h1>
     <div class="container d-flex flex-row my-5">
-        <div class="left-container d-flex justify-content-around w-75">
-            <img src="{{ user.image }}" alt="profile picture"class="w-75">
+        <div class="left-container d-flex justify-content-around w-75 h-75">
+            <img src="{{ user.image }}" alt="profile picture" class="w-75 ">
         </div>
         <div class="right-container pt-2">
             <table class="reponsive-table highlight">
@@ -33,18 +33,20 @@
     </div>
     <h1 class="text-center profile typo_title">Missions History</h1>
     <div class="container">
-    {% for mission in user.missions %}
-        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-            <div class="card">
-                <div class="card-image">
-                    <img src="{{ asset('build/images/' ~ mission.planet.imageArt) }}" alt="planet picture">
-                    <span class="card-title card-mission-profile py-2">{{ mission.title }}</span>
+        <div class="row">
+        {% for mission in user.missions %}
+                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="{{ asset('build/images/' ~ mission.planet.imageArt) }}" alt="planet picture">
+                            <span class="card-title card-mission-profile py-2">{{ mission.title }}</span>
+                        </div>
+                        <div class="card-content">
+                            <p>{{ mission.description }}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <p>{{ mission.description }}</p>
-                </div>
-            </div>
+        {% endfor %}
         </div>
-    {% endfor %}
     </div>
 {% endblock %}
