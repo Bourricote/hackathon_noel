@@ -7,12 +7,17 @@
         <div class="container w-50">
             <h1 class="typo_title text-white text-center">Register</h1>
             {{ form_start(registrationForm) }}
-                {{ form_row(registrationForm.firstname, { 'label': 'Firstname' }) }}
-                {{ form_row(registrationForm.lastname, { 'label': 'Lastname' }) }}
-                {{ form_row(registrationForm.level, { 'label': 'Level' }) }}
-                {{ form_row(registrationForm.email, { 'label': 'Email' }) }}
-                {{ form_row(registrationForm.plainPassword, { 'label': 'Password' }) }}
-            <div class="d-flex justify-content-end pr-3">
+                {{ form_label(registrationForm.firstname) }}
+                {{ form_widget(registrationForm.firstname) }}
+                {{ form_label(registrationForm.lastname) }}
+                {{ form_widget(registrationForm.lastname) }}
+                {{ form_label(registrationForm.level) }}
+                {{ form_widget(registrationForm.level) }}
+                {{ form_label(registrationForm.email) }}
+                {{ form_widget(registrationForm.email) }}
+                {{ form_label(registrationForm.plainPassword, 'Password') }}
+                {{ form_widget(registrationForm.plainPassword) }}
+            <div class="d-flex justify-content-end pt-3 pr-3">
                 <button id="btn_custom" class="btn">Register</button>
             </div>
             {{ form_end(registrationForm) }}
