@@ -18,3 +18,4 @@ require('@fortawesome/fontawesome-free/js/all.js');
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
 
 require('./form_new_mission.js');
+require('./stars_video.js');

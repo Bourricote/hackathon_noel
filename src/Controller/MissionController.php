@@ -55,8 +55,10 @@ class MissionController extends AbstractController
         $user->addMission($mission);
         $entityManager->persist($user);
         $entityManager->flush();
-        return $this->redirectToRoute('mission_index');
+        return $this->render('/mission/stars_video.html.twig');
     }
+
+
 
     /**
      * @Route("/admin/{user}", name="mission_admin", methods={"GET"})
