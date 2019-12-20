@@ -1,6 +1,15 @@
 .form-control {
-  color: white;
+  color: $turquoise;
 }
+
+.form_mission{
+  label{
+      font-size: 1.3rem;
+      font-family: 'nasalization', sans-serif;
+      color: white;
+    }
+  }
+
 
 #btn_custom {
   text-align: center;
