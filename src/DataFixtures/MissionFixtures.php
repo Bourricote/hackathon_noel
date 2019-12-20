@@ -22,7 +22,6 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
             'mission_type' => 'rescue',
             'level' => 'beginner',
             'planet' => 'planet_0',
-            'user' => 'user_0'
         ],
         [
             'title' => 'Fight a revolution',
@@ -34,7 +33,6 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
             'mission_type' => 'fight',
             'level' => 'advanced',
             'planet' => 'planet_1',
-            'user' => 'user_0'
         ],
         [
             'title' => 'Infiltrate an anarchist group',
@@ -46,7 +44,6 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
             'mission_type' => 'fight',
             'level' => 'expert',
             'planet' => 'planet_2',
-            'user' => 'user_0'
         ],
         [
             'title' => 'Repopulate the planet',
@@ -58,7 +55,6 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
             'mission_type' => 'rescue',
             'level' => 'beginner',
             'planet' => 'planet_3',
-            'user' => 'user_1'
         ],
         [
             'title' => 'Fight the first order',
@@ -70,7 +66,6 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
             'mission_type' => 'fight',
             'level' => 'beginner',
             'planet' => 'planet_4',
-            'user' => 'user_1'
         ],
         [
             'title' => 'Discovery of the planet',
@@ -82,7 +77,6 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
             'mission_type' => 'exploration',
             'level' => 'expert',
             'planet' => 'planet_5',
-            'user' => 'user_0'
         ],
         [
             'title' => 'Save children',
@@ -94,7 +88,6 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
             'mission_type' => 'rescue',
             'level' => 'advanced',
             'planet' => 'planet_6',
-            'user' => 'user_1'
         ],
         [
             'title' => 'Information retrievement',
@@ -106,7 +99,6 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
             'mission_type' => 'intelligence',
             'level' => 'beginner',
             'planet' => 'planet_7',
-            'user' => 'user_1'
         ],
 
     ];
@@ -125,8 +117,12 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
             $mission->setNumberPerson(($data['number_person']));
             $mission->setMissionType($data['mission_type']);
             $mission->setLevel($data['level']);
-            $mission->addUser($this->getReference($data['user']));
-            $mission->setCreator($this->getReference('user_2'));
+            for ($j = 0; $j < 4; $j++) {
+                $number = rand(0,10);
+                $mission->addUser($this->getReference('user_' . $number));
+            }
+            $number2 = rand(0,2);
+            $mission->setCreator($this->getReference('admin_' . $number2));
             $manager->persist($mission);
             $this->addReference('mission_' . $i, $mission);
             $i++;
