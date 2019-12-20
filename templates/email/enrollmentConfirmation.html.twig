@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Orbitron&display=swap');
+        @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+        h1, h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: white;
+            margin: 0;
+        }
+        h3 {
+            padding-top: 30px;
+        }
+
+        p, ul {
+            font-family: 'Josefin Sans', sans-serif;
+            color: white;
+        }
+
+        @keyframes move-twink-back {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: -10000px 5000px;
+            }
+        }
+        .stars {
+            padding: 10px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            display: block;
+        }
+        .stars {
+            background: #000 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+            z-index: 0;
+        }
+
+    </style>
+</head>
+<body class="stars">
+<div>
+    <img style="width: 100%; height: 300px;" src="https://previews.123rf.com/images/sdecoret/sdecoret1706/sdecoret170601912/80949534-int%C3%A9rieur-de-la-
+    vaisseau-spatial-avec-vue-sur-l-espace-et-la-plan%C3%A8te-earth-rendu-3d.jpg" alt="">
+</div>
+<div>
+    <div>
+        <h1>Mission Confirmation</h1>
+        <p>
+            Hello, {{ user.firstname }} you've been enrolled to the mission {{ mission.title }},
+            get your stuff ready for this adventure !
+        </p>
+    </div>
+    <div>
+        <h3>Planet details :</h3>
+        <ul style="list-style-type: none; padding: 0;">
+            <li>Name: {{ mission.planet.name }}</li>
+            <li>Type: {{ mission.planet.type }}</li>
+            <li>Distance: {{ mission.planet.distance }} light years</li>
+            <li>Temperature: {{ mission.planet.temperature }}</li>
+            <li>Population: {{ mission.planet.population }}</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

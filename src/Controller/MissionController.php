@@ -7,10 +7,12 @@ use App\Entity\User;
 use App\Form\MissionType;
 use App\Form\SearchMissionType;
 use App\Repository\MissionRepository;
+use App\Service\MailerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -50,11 +52,16 @@ class MissionController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function enroll(Mission $mission, User $user, EntityManagerInterface $entityManager) : Response
+    public function enroll(Mission $mission, User $user, EntityManagerInterface $entityManager, MailerService $mailer) : Response
     {
         $user->addMission($mission);
         $entityManager->persist($user);
         $entityManager->flush();
+        $from = $this->getParameter('mailer_from');
+        $to = $user->getEmail();
+        $subject = $this->getParameter('mailer_subject');
+        $mailer->sendMissionEnrollment($from, $from, $user, $subject, $mission);
+
         return $this->redirectToRoute('mission_index');
     }
 
