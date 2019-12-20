@@ -7,7 +7,7 @@
     <div class="container d-flex flex-row my-5">
         <div class="left-container d-flex justify-content-around w-75 h-75">
             {% if profile.imageName is defined %}
-            <img src="/images/profile/{{ profile.imageName }}" alt="profile picture" class="w-75 ">
+                <img src="/images/profile/{{ profile.imageName }}" alt="profile picture" class="w-75 ">
             {% endif %}
         </div>
         <div class="right-container pt-2">
@@ -31,27 +31,36 @@
                 </tr>
                 </tbody>
             </table>
-            <a href="{{ path('user_upload', {'id' : user.id}) }}">Change your profile picture</a>
+            <div class="form_upload">
+                {{ form_start(form) }}
+                <div class="d-flex">
+                    {{ form_label(form.imageFile,'Avatar') }}
+
+                    {{ form_row(form.imageFile) }}
+                    <button class="btn btn_custom" id="btn_custom">{{ button_label|default('Upload') }}</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
         </div>
     </div>
     {% if app.user.id != user.id or is_granted('ROLE_SUBSCRIBER') %}
-    <h1 class="text-center profile typo_title">Missions History</h1>
-    <div class="container">
-        <div class="row">
-        {% for mission in user.missions %}
-                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="{{ asset('build/images/' ~ mission.planet.imageArt) }}" alt="planet picture">
-                            <span class="card-title card-mission-profile py-2">{{ mission.title }}</span>
-                        </div>
-                        <div class="card-content">
-                            <p>{{ mission.description }}</p>
+        <h1 class="text-center profile typo_title">Missions History</h1>
+        <div class="container">
+            <div class="row">
+                {% for mission in user.missions %}
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="{{ asset('build/images/' ~ mission.planet.imageArt) }}" alt="planet picture">
+                                <span class="card-title card-mission-profile py-2">{{ mission.title }}</span>
+                            </div>
+                            <div class="card-content">
+                                <p>{{ mission.description }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-        {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
     {% endif %}
 {% endblock %}
