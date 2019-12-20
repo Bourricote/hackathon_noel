@@ -22,6 +22,7 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
             'mission_type' => 'rescue',
             'level' => 'beginner',
             'planet' => 'planet_0',
+            'user' => 'user_0'
         ],
         [
             'title' => 'Fight a revolution',
@@ -33,6 +34,7 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
             'mission_type' => 'fight',
             'level' => 'advanced',
             'planet' => 'planet_1',
+            'user' => 'user_0'
         ],
         [
             'title' => 'Infiltrate an anarchist group',
@@ -44,6 +46,7 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
             'mission_type' => 'fight',
             'level' => 'expert',
             'planet' => 'planet_2',
+            'user' => 'user_0'
         ],
         [
             'title' => 'Repopulate the planet',
@@ -55,6 +58,55 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
             'mission_type' => 'rescue',
             'level' => 'beginner',
             'planet' => 'planet_3',
+            'user' => 'user_1'
+        ],
+        [
+            'title' => 'Fight the first order',
+            'description' => 'After the end of the empire, the first order tries to step up and invade the planet',
+            'transport' => 'republic cruiser',
+            'departure_date' => '2240-05-04',
+            'return_date' => '2245-08-04',
+            'number_person' => 40,
+            'mission_type' => 'fight',
+            'level' => 'beginner',
+            'planet' => 'planet_4',
+            'user' => 'user_1'
+        ],
+        [
+            'title' => 'Discovery of the planet',
+            'description' => 'Take part of a deep exploration on an unknown planet',
+            'transport' => 'space bike',
+            'departure_date' => '2240-09-15',
+            'return_date' => '2250-12-24',
+            'number_person' => 15,
+            'mission_type' => 'exploration',
+            'level' => 'expert',
+            'planet' => 'planet_5',
+            'user' => 'user_2'
+        ],
+        [
+            'title' => 'Save children',
+            'description' => 'Supporter of slavery are exploiting children by forcing them to do hardwork',
+            'transport' => 'flying renagade',
+            'departure_date' => '2240-03-10',
+            'return_date' => '2245-06-24',
+            'number_person' => 8,
+            'mission_type' => 'rescue',
+            'level' => 'advanced',
+            'planet' => 'planet_6',
+            'user' => 'user_2'
+        ],
+        [
+            'title' => 'Information retrievement',
+            'description' => 'The centaurs possess important information on an ennemy',
+            'transport' => 'flying renagade',
+            'departure_date' => '2240-02-07',
+            'return_date' => '2242-02-24',
+            'number_person' => 2,
+            'mission_type' => 'intelligence',
+            'level' => 'beginner',
+            'planet' => 'planet_7',
+            'user' => 'user_2'
         ],
 
     ];
@@ -73,7 +125,7 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
             $mission->setNumberPerson(($data['number_person']));
             $mission->setMissionType($data['mission_type']);
             $mission->setLevel($data['level']);
-            $mission->addUser($this->getReference('user_0'));
+            $mission->addUser($this->getReference($data['user']));
             $mission->setCreator($this->getReference('user_1'));
             $manager->persist($mission);
             $this->addReference('mission_' . $i, $mission);
