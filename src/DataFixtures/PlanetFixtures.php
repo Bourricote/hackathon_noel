@@ -89,7 +89,7 @@ class PlanetFixtures extends Fixture
             'image_tech' => 'Luyten_imageTech.svg',
             'image_art'=> 'Luyten_imageArt.jpg',
             'temperature' => '0 to 50°C',
-            'population' => 'Centaurs',
+            'population' => 'Lutins',
         ],
 
     ];
