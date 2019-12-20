@@ -114,30 +114,4 @@ class UserController extends AbstractController
         return $this->redirectToRoute('user_index');
     }
 
-    /**
-     * @Route("/upload/{id}", name="user_upload", methods={"GET", "POST"})
-     * @param Request $request
-     * @param User $user
-     * @param EntityManagerInterface $entityManager
-     * @return Response
-     */
-    /*public function profilePicture(Request $request, User $user, EntityManagerInterface $entityManager)
-    {
-        $profile = new Profile;
-        $form = $this->createForm(ProfileType::class, $profile);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $profile->setUserId($user->getId());
-            $entityManager->persist($profile);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('user_show', [
-                'id' => $user->getId()
-            ]);
-        }
-        return $this->render('user/upload.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }*/
 }
