@@ -78,7 +78,7 @@ class PlanetFixtures extends Fixture
             'type' => 'mesoplanet',
             'distance' => 4.24,
             'image_tech' => 'Centaur_imageTech.svg',
-            'image_art'=> 'Trappist_imageArt.jpg',
+            'image_art'=> 'Centaur_imageArt.jpg',
             'temperature' => '0 to 50°C',
             'population' => 'Centaurs',
         ],
