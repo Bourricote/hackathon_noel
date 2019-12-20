@@ -52,14 +52,28 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="user_show", methods={"GET"})
+     * @Route("/{id}", name="user_show", methods={"GET", "POST"})
      */
-    public function show(User $user): Response
+    public function show(User $user, Request $request, EntityManagerInterface $entityManager): Response
     {
+        $profile = new Profile;
+        $form = $this->createForm(ProfileType::class, $profile);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $profile->setUserId($user->getId());
+            $entityManager->persist($profile);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('user_show', [
+                'id' => $user->getId()
+            ]);
+        }
         $profile = $this->getDoctrine()->getRepository(Profile::class)->findOneBy(['userId' => $user->getId()]);
         return $this->render('user/show.html.twig', [
             'user' => $user,
-            'profile' => $profile
+            'profile' => $profile,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -107,7 +121,7 @@ class UserController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @return Response
      */
-    public function profilePicture(Request $request, User $user, EntityManagerInterface $entityManager)
+    /*public function profilePicture(Request $request, User $user, EntityManagerInterface $entityManager)
     {
         $profile = new Profile;
         $form = $this->createForm(ProfileType::class, $profile);
@@ -125,5 +139,5 @@ class UserController extends AbstractController
         return $this->render('user/upload.html.twig', [
             'form' => $form->createView(),
         ]);
-    }
+    }*/
 }
