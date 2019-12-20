@@ -1,3 +1,6 @@
 framework:
     mailer:
         dsn: '%env(MAILER_DSN)%'
+parameters:
+    mailer_from: '%env(resolve:MAILER_FROM_ADDRESS)%'
+    mailer_subject: '%env(resolve:MAILER_SUBJECT)%'
