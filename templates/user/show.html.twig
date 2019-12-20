@@ -34,6 +34,7 @@
             <a href="{{ path('user_upload', {'id' : user.id}) }}">Change your profile picture</a>
         </div>
     </div>
+    {% if app.user.id != user.id or is_granted('ROLE_SUBSCRIBER') %}
     <h1 class="text-center profile typo_title">Missions History</h1>
     <div class="container">
         <div class="row">
@@ -52,4 +53,5 @@
         {% endfor %}
         </div>
     </div>
+    {% endif %}
 {% endblock %}

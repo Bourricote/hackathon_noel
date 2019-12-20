@@ -3,17 +3,19 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <div class="container w-50 register">
-        <h1 class="typo_title text-white text-center">Register</h1>
-        {{ form_start(registrationForm) }}
-            {{ form_row(registrationForm.firstname, { 'label': 'Firstname' }) }}
-            {{ form_row(registrationForm.lastname, { 'label': 'Lastname' }) }}
-            {{ form_row(registrationForm.level, { 'label': 'Level' }) }}
-            {{ form_row(registrationForm.email, { 'label': 'Email' }) }}
-            {{ form_row(registrationForm.plainPassword, { 'label': 'Password' }) }}
-        <div class="d-flex justify-content-end pr-3">
-            <button id="btn_custom" class="btn">Register</button>
+    <div class="register">
+        <div class="container w-50">
+            <h1 class="typo_title text-white text-center">Register</h1>
+            {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.firstname, { 'label': 'Firstname' }) }}
+                {{ form_row(registrationForm.lastname, { 'label': 'Lastname' }) }}
+                {{ form_row(registrationForm.level, { 'label': 'Level' }) }}
+                {{ form_row(registrationForm.email, { 'label': 'Email' }) }}
+                {{ form_row(registrationForm.plainPassword, { 'label': 'Password' }) }}
+            <div class="d-flex justify-content-end pr-3">
+                <button id="btn_custom" class="btn">Register</button>
+            </div>
+            {{ form_end(registrationForm) }}
         </div>
-        {{ form_end(registrationForm) }}
     </div>
 {% endblock %}
