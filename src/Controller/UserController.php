@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Profile;
 use App\Entity\User;
+use App\Form\ProfileType;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -53,8 +56,10 @@ class UserController extends AbstractController
      */
     public function show(User $user): Response
     {
+        $profile = $this->getDoctrine()->getRepository(Profile::class)->findOneBy(['userId' => $user->getId()]);
         return $this->render('user/show.html.twig', [
             'user' => $user,
+            'profile' => $profile
         ]);
     }
 
@@ -80,15 +85,45 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}", name="user_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param User $user
+     * @return Response
      */
     public function delete(Request $request, User $user): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($user);
             $entityManager->flush();
         }
 
         return $this->redirectToRoute('user_index');
+    }
+
+    /**
+     * @Route("/upload/{id}", name="user_upload", methods={"GET", "POST"})
+     * @param Request $request
+     * @param User $user
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+    public function profilePicture(Request $request, User $user, EntityManagerInterface $entityManager)
+    {
+        $profile = new Profile;
+        $form = $this->createForm(ProfileType::class, $profile);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $profile->setUserId($user->getId());
+            $entityManager->persist($profile);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('user_show', [
+                'id' => $user->getId()
+            ]);
+        }
+        return $this->render('user/upload.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

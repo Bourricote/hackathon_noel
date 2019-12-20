@@ -6,8 +6,10 @@ use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Serializable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -55,11 +57,6 @@ class User implements UserInterface
     private $level;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $image;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
@@ -78,6 +75,7 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Mission", mappedBy="creator")
      */
     private $missionsCreated;
+
 
     public function __construct()
     {
@@ -199,17 +197,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(?string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
