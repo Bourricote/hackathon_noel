@@ -3,26 +3,20 @@
 namespace App\Entity;
 
 use DateTimeImmutable;
-use Exception;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Serializable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use Symfony\Component\Validator\Constraints as Assert;
-
 
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\HasLifecycleCallbacks
- * @Vich\Uploadable
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
-class User implements UserInterface, Serializable
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -63,18 +57,6 @@ class User implements UserInterface, Serializable
     private $level;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $image;
-
-    /**
-     * @var File
-     * @Assert\NotBlank
-     * @Vich\UploadableField(mapping="user", fileNameProperty="image")
-     */
-    private $imageFile;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
@@ -93,6 +75,7 @@ class User implements UserInterface, Serializable
      * @ORM\OneToMany(targetEntity="App\Entity\Mission", mappedBy="creator")
      */
     private $missionsCreated;
+
 
     public function __construct()
     {
@@ -214,37 +197,6 @@ class User implements UserInterface, Serializable
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(?string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * @param null|File $imageFile
-     * @return User
-     * @throws Exception
-     */
-    public function setImageFile(File $imageFile): User
-    {
-        $this->imageFile = $imageFile;
-        return $this;
-    }
-
-    /**
-     * @return null|File
-     */
-    public function getImageFile(): ?File
-    {
-        return $this->imageFile;
-    }
-
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
@@ -343,16 +295,5 @@ class User implements UserInterface, Serializable
         }
 
         return $this;
-    }
-
-    public function serialize()
-    {
-        $this->image = base64_encode($this->image);
-    }
-
-    public function unserialize($serialized)
-    {
-        $this->image = base64_decode($this->image);
-
     }
 }

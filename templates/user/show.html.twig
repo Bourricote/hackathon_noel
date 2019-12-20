@@ -6,7 +6,9 @@
     <h1 class="text-center profile typo_title">Profile</h1>
     <div class="container d-flex flex-row my-5">
         <div class="left-container d-flex justify-content-around w-75 h-75">
-            <img src="{{ user.image }}" alt="profile picture" class="w-75 ">
+            {% if profile.imageName is defined %}
+            <img src="/images/profile/{{ profile.imageName }}" alt="profile picture" class="w-75 ">
+            {% endif %}
         </div>
         <div class="right-container pt-2">
             <table class="reponsive-table highlight">
@@ -29,6 +31,7 @@
                 </tr>
                 </tbody>
             </table>
+            <a href="{{ path('user_upload', {'id' : user.id}) }}">Change your profile picture</a>
         </div>
     </div>
     <h1 class="text-center profile typo_title">Missions History</h1>

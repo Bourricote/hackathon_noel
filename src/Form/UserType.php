@@ -20,7 +20,6 @@ class UserType extends AbstractType
             ->add('firstname')
             ->add('lastname')
             ->add('level')
-            ->add('image')
             ->add('createdAt')
             ->add('updatedAt')
             ->add('missions')
