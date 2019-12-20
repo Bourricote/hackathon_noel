@@ -83,9 +83,10 @@ class MissionController extends AbstractController
         $mission = new Mission();
         $form = $this->createForm(MissionType::class, $mission);
         $form->handleRequest($request);
-
+        $user = $this->getUser();
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $mission->setCreator($user);
             $entityManager->persist($mission);
             $entityManager->flush();
 
