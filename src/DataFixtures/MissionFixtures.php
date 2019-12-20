@@ -74,7 +74,7 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
             $mission->setMissionType($data['mission_type']);
             $mission->setLevel($data['level']);
             $mission->addUser($this->getReference('user_0'));
-            $mission->setCreator($this->getReference('user_1'));
+            $mission->setCreator($this->getReference('user_2'));
             $manager->persist($mission);
             $this->addReference('mission_' . $i, $mission);
             $i++;
