@@ -58,14 +58,16 @@
         </div>
     </div>
 
-        <h1 class="text-center typo_title mission-title text-white">Participants</h1>
-        <div class="container">
-            {% for participant in participants %}
+    <h1 class="text-center typo_title mission-title text-white">Participants</h1>
+    <div class="container">
+        <div class="row">
+            {% for key,participant in participants %}
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="card-image">
-                            <img src="/images/profile/{{ profiles[loop.index].imageName }}" alt="user picture">
-                            <a href="{{ path('user_show', {'id': participant.id}) }}"><span class="card-title">{{ participant.firstname }} {{ participant.lastname }}</span></a>
+                            <img src="/images/profile/{{ profiles[key].imageName }}" alt="user picture">
+                            <a href="{{ path('user_show', {'id': participant.id}) }}"><span
+                                        class="card-title">{{ participant.firstname }} {{ participant.lastname }}</span></a>
                         </div>
                         <div class="card-content">
                             <p>Level: <b>{{ participant.level }}</b></p>
@@ -74,6 +76,7 @@
                 </div>
             {% endfor %}
         </div>
+    </div>
 
     {% if app.user %}
         <div class="d-flex justify-content-center my-5">

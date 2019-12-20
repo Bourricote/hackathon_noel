@@ -69,7 +69,7 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
         ],
         [
             'title' => 'Discovery of the planet',
-            'description' => 'Take part of a deep exploration on an unknown planet',
+            'description' => 'Take part of a deep exploration on an unknown planet, it\'s the mission of a lifetime',
             'transport' => 'space bike',
             'departure_date' => '2240-09-15',
             'return_date' => '2250-12-24',
@@ -91,7 +91,7 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
         ],
         [
             'title' => 'Information retrievement',
-            'description' => 'The centaurs possess important information on an ennemy',
+            'description' => 'The centaurs possess important information on an ennemy, we need to approach them as friends',
             'transport' => 'flying renagade',
             'departure_date' => '2240-02-07',
             'return_date' => '2242-02-24',

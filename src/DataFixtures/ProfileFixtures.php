@@ -20,7 +20,7 @@ class ProfileFixtures extends Fixture implements DependentFixtureInterface
         'picture_7.jpg',
         'picture_8.jpg',
         'picture_9.jpg',
-        'picture_10.jpg',
+        'picture_10.jpeg',
         'picture_11.jpg',
     ];
 

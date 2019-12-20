@@ -120,7 +120,7 @@ class MissionController extends AbstractController
 
         $profiles = [];
         foreach ($participants as $participant) {
-            $profile[] = $this->getDoctrine()->getRepository(Profile::class)->findOneBy(['userId' => $participant->getId()]);
+            $profiles[] = $this->getDoctrine()->getRepository(Profile::class)->findOneBy(['userId' => $participant->getId()]);
         }
 
         return $this->render('mission/show.html.twig', [
