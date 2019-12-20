@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Mission;
+use App\Entity\Profile;
 use App\Entity\User;
 use App\Form\MissionType;
 use App\Form\SearchMissionType;
@@ -117,11 +118,16 @@ class MissionController extends AbstractController
         $planet = $mission->getPlanet();
         $participants = $mission->getUsers();
 
+        $profiles = [];
+        foreach ($participants as $participant) {
+            $profiles[] = $this->getDoctrine()->getRepository(Profile::class)->findOneBy(['userId' => $participant->getId()]);
+        }
+
         return $this->render('mission/show.html.twig', [
             'mission' => $mission,
             'planet' => $planet,
             'participants' => $participants,
-
+            'profiles' => $profiles,
         ]);
     }
 
